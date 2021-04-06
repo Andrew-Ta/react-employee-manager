@@ -11,6 +11,7 @@ const SideBar = styled.section`
     height: calc(100vh - 64px);
     position: relative;
     z-index:1;
+    padding:2rem;
 
     header{
     margin-bottom:1rem;
