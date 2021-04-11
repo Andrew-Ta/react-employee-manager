@@ -2,12 +2,12 @@
 This project is made to learn how to use React and Firebase. This web app allows the user to register for an account, then login to access the employee manager dashboard.
 
 ### Dependencies Required:
-styled-components
-svgo
-@svgr/cli
-node-sass
-firebase
-react-router-dom
+- styled-components
+- svgo
+- @svgr/cli
+- node-sass
+- firebase
+- react-router-dom
 
 ### Available Scripts
 
