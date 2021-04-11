@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 import Logo from 'components/icons/Logo'
 
@@ -23,10 +24,10 @@ const HomePage = (props) => {
 
         <HomePageStyles>
             <Logo/>
-            <header>
-                <h1>Home Page</h1>
-                <p>Focus on people and we'll focus on the paperwork</p>
-            </header>
+            <h1>Home Page</h1>
+            <p>Focus on people and we'll focus on the paperwork</p>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/register">Register</Link></li>
         </HomePageStyles>
 
      );

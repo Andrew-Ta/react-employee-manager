@@ -1,13 +1,14 @@
 //import external modules (best practice)
-import React, {useState, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components'
 import {Redirect} from 'react-router-dom'
 
 import firebaseApp from './../firebase/firebaseConfig'
-
+import AuthContext from './../auth/AuthContext'
 //then import my own modules
 import FormInput from './../components/forms/FormInput'
-import Button from 'components/buttons/Button'
+import Button from './../components/buttons/Button'
+
 
 const LoginPageStyles = styled.aside`
 
@@ -25,25 +26,21 @@ const LoginPageStyles = styled.aside`
 `
 
 const LoginPage = (props) => {
-
+    const auth = useContext(AuthContext)
     const[email, setEmail] = useState('test@test.com')
     const[password, setPassword] = useState('123456')
     const[isValid, setIsValid] = useState(false)
 
         console.log('render')
-
+        console.log(auth)
 
     const handleClick = (e) =>{
         // console.log(firebaseApp);
         // test our authentication with firebase..
-        firebaseApp.auth().signInWithEmailAndPassword('test@test.com', '123456')
+        firebaseApp.auth().signInWithEmailAndPassword(email, password)
         .then(userCredential=>{
-            // console.log(userCredential.user.email)
-            // console.log(userCredential.user.uid)
-            // console.log(userCredential.user.displayName)
-            // console.log(userCredential.user.emailVerified)
-            // console.log(userCredential.user.userCredential)
-
+            //email pass input
+            auth.isUser = true
             setIsValid(true)
         })
         .catch(error=>{
@@ -52,22 +49,18 @@ const LoginPage = (props) => {
         })
     }
     //conditional rendering
-    if(setIsValid){
-
+    if(isValid){
         return <Redirect to="/dashboard"/>
-
     }else{
-
         return ( 
             <LoginPageStyles>
                 <header><h1>Login Page</h1></header>
-                <FormInput label="email address" type="email" onChange={(e)=> setEmail(e.target.value.trim())}/>
-                <FormInput label="password" type="text" onChange={(e)=> setPassword(e.target.value.trim())}/>
-                <Button label="login" uiStyles="login" onclick={handleClick}/>
+                <FormInput type="text" label="email"  onChange={(e)=> setEmail(e.target.value.trim())}/>
+                <FormInput type="text" label="password" onChange={(e)=> setPassword(e.target.value.trim())}/>
+                <Button label="login" uiStyles="login" onClick={handleClick}/>
             </LoginPageStyles>
         );
-    }
-    
+    } 
 }
  
 export default LoginPage;

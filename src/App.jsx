@@ -1,6 +1,11 @@
+//external modules (dependencies)
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
+//contect, data
+import {AuthProvider} from './auth/AuthContext'
+
+//components being used
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
@@ -11,6 +16,8 @@ import AppBar from './components/appbar/AppBar'
 
 function App() {
   return (
+    <>
+    <AuthProvider>
     <Router>
       <AppBar/>
       <Switch>
@@ -21,6 +28,8 @@ function App() {
         <Route path="*"><PageNotFound/></Route>
       </Switch>
     </Router>
+    </AuthProvider>
+    </>
   );
 }
 

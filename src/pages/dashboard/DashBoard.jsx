@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components'
+
+import AuthContext from './../../auth/AuthContext'
 
 const DashBoardStyles = styled.section`
     display:flex;
@@ -38,27 +41,41 @@ const Panels = styled.section`
 `
 
 const DashBoard = (props) => {
-    return ( 
-        
-        <DashBoardStyles>
-            <SideBar>
-                <header>
-                    <h1>Firebase</h1>
-                    <p>whats all the fuss about</p>
-                </header>
-           
-                <ul>
-                <li>view all</li>
-                <li>add new employee</li>
-                <li>edit an employee</li>
-                <li>delete an employee</li>
-                </ul>
-            </SideBar>
+    // access the authContext
+    const auth = useContext(AuthContext)
 
-            <Panels></Panels>
-        </DashBoardStyles>
+        console.log("Dashboard Render")
+        console.log(auth)
 
-     );
+    if(auth.isUser){
+        return ( 
+
+            <DashBoardStyles>
+                <SideBar>
+                    <header>
+                        <h1>Firebase</h1>
+                        <p>whats all the fuss about</p>
+                    </header>
+            
+                    <ul>
+                    <li>view all</li>
+                    <li>add new employee</li>
+                    <li>edit an employee</li>
+                    <li>delete an employee</li>
+                    </ul>
+                </SideBar>
+
+                <Panels></Panels>
+            </DashBoardStyles>
+
+        );
+    }else{
+        return <Redirect to="/login"></Redirect>
+    }           
 }
  
 export default DashBoard;
+
+
+//loggout button/////////////////////////////////////////////
+//firebaseApp.auth().signOut()

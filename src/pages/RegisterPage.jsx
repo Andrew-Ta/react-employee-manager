@@ -30,9 +30,10 @@ const RegisterPage = (props) => {
             </header>
 
             <FormInput label="name on account" type="text"/>
-            <FormInput label="valid email address" type="email"/>
-            <FormInput label="password (min 6 characters)" type="text"/>
-            <Button className="create-account"uiStyle="signup" label="Create a free account"></Button>
+            <FormInput type="text" label="valid email address"  onChange={(e)=> setEmail(e.target.value.trim())}/>
+            <FormInput type="text" label="passwpassword (min 6 characters)ord" onChange={(e)=> setPassword(e.target.value.trim())}/>
+
+            <Button className="create-account"uiStyle="signup" label="Create a free account" onClick={handleClick}></Button>
         </RegisterPageStyles>
      );
 }
