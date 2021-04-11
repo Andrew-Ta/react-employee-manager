@@ -31,8 +31,8 @@ const LoginPage = (props) => {
     const[password, setPassword] = useState('')
     const[isValid, setIsValid] = useState(false)
 
-        console.log('render')
-        console.log(auth)
+        // console.log('render')
+        // console.log(auth)
 
     const handleClick = (e) =>{
         // console.log(firebaseApp);

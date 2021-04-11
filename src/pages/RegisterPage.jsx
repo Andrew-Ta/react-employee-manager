@@ -37,7 +37,8 @@ const RegisterPage = (props) => {
         firebaseApp.auth().createUserWithEmailAndPassword(email,password)
 
         .then(userCredential => {
-            var user = userCredential.user;
+            var user = firebaseApp.auth().user;
+            
             auth.isUser = true
             setIsValid(true)
         })
@@ -47,10 +48,23 @@ const RegisterPage = (props) => {
 
             console.log(errorCode, errorMessage);
         })
-
     }
 
     if(isValid){
+        var validUser = firebaseApp.auth().currentUser;
+        validUser.updateProfile({
+            displayName: username
+            }).then(function() {
+                console.log(username)
+                console.log("successful registration.")
+
+            }).catch(function(error) {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+
+                console.log(errorCode, errorMessage);
+            });
+
         return <Redirect to="/login"/>
     } else {
         return ( 
