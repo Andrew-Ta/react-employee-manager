@@ -15,6 +15,7 @@ import AppBar from './components/appbar/AppBar'
 
 
 function App() {
+
   return (
     <>
     <AuthProvider>
@@ -27,6 +28,7 @@ function App() {
         <Route path="/dashboard"><DashBoard/></Route>
         <Route path="*"><PageNotFound/></Route>
       </Switch>
+      
     </Router>
     </AuthProvider>
     </>
