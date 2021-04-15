@@ -1,34 +1,29 @@
-import React from 'react';
-import firebaseApp from './../../../firebase/firebaseConfig'
-
-const ViewAllPanel = () => {
-
-    console.log(firebaseApp.auth().currentUser.uid)
-
-    //this part is just a path to the document(aka. row)     collection(aka.table).
-    const docRef = firebaseApp.firestore().collection('users').doc(firebaseApp.auth().currentUser.uid)
-    // const clientRef = docRef.collection('employees').doc('a1')
-    
-
-    docRef.get()
-    .then(doc =>{
-        console.log(doc.data())
-    })
-    .catch(error =>{
-        console.log(error)
-    })
-
-    // clientRef.get()
-    // .then(doc =>{
-    //     console.log(doc.data())
-    // })
-    // .catch(error =>{
-    //     console.log(error)
-    // })
-
-    return ( 
-        <header><h2>View All Panel</h2></header>
-     );
-}
+import React  from "react";
+import styled from "styled-components";
  
-export default ViewAllPanel;
+
+import AddEmployeeWidget from "./widgets/AddEmployeeWidget";
+import EmployeeDisplayWidget from "./widgets/EmployeeDisplayWidget";
+
+const ViewAllPanelStyles = styled.section`
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  aside {
+    width: 480px;
+  }
+`;
+
+const ViewAll = (props) => {
+  return (
+    <section>
+      <ViewAllPanelStyles>
+        <AddEmployeeWidget />
+        <EmployeeDisplayWidget />
+      </ViewAllPanelStyles>
+    </section>
+  );
+};
+
+export default ViewAll;
