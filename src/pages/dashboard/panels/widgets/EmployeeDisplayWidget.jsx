@@ -62,7 +62,7 @@ const EmployeeStyles = styled.ul`
   }
 `;
 
-const Employee = ( ) => {
+const Employee = ({name,department,key}) => {
  
   return (
     <EmployeeStyles>
@@ -71,10 +71,10 @@ const Employee = ( ) => {
         <User />
       </li>
       <li className="content">
-        <p>full name</p> 
+        <p>full name</p> {name}
       </li>
       <li className="content">
-        <p>department</p> 
+        <p>department</p> {department}
       </li>
       <li className="controls">
         <RemoveEmployee />
@@ -86,14 +86,21 @@ const Employee = ( ) => {
 };
 
 const EmployeeDisplayWidget = (props) => {
-  
+  console.log(props)
+  if(!props.employees){
+    return null
+  }
+
   return (
     <WidgetStyles>
       <header>
         <h2>Employees</h2>
       </header>
      
-        <Employee name="full name" department={"tea lady"}/>
+      {
+        props.employees.map((employee)=>(<Employee key={employee.id} name={employee.name} department={employee.department}/>))
+      }
+      
       
     </WidgetStyles>
   );
