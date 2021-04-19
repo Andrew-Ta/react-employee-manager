@@ -1,6 +1,8 @@
 # Employee Manager Dashboard App
 This project is made to learn how to use React and Firebase. This web app allows the user to register for an account, then login to access the employee manager dashboard.
 
+Inside the dashboard, users have the ability to add an employee to the database via the Add Employee Widget. All employees in the database will be displayed in real time in the Display Employee Widget.
+
 ### Dependencies Required:
 - styled-components
 - svgo
@@ -8,6 +10,7 @@ This project is made to learn how to use React and Firebase. This web app allows
 - node-sass
 - firebase
 - react-router-dom
+- uuid
 
 ### Available Scripts
 
